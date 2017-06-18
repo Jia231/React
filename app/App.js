@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import {render} from 'react-dom';
+import KanbanBoard from './KanbanBoard';
 
 class App extends Component {
+  constructor(){
+    super();
+  }
   render(){
-    return (
-      <h1>Hello World</h1>
-    );
+    return(
+      <KanbanBoard taskCallbacks={this.props.taskCallbacks} cards={this.props.fetchedCards} />
+    )
   }
 }
 
-render(<App />, document.getElementById('root'));
+export default App;
