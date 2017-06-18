@@ -12,7 +12,7 @@ class KanbanBoardContainer extends Component{
     constructor(){
         super(...arguments);
         this.state = {
-            stateCards:[]
+            cards:[]
         }
         this.addTask = this.addTask.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
@@ -45,6 +45,7 @@ class KanbanBoardContainer extends Component{
         });
     }
     deleteTask(cardId,taskId,taskIndex){
+        
         let cardIndex = this.state.cards.findIndex((card)=>card.id==cardId)
 
         let nextState = update(this.state.cards,{
@@ -59,6 +60,7 @@ class KanbanBoardContainer extends Component{
         });
     }
     toggleTask(cardId,taskId,taskIndex){
+        
         let cardIndex = this.state.cards.findIndex((card)=>card.id==cardId);
         let NewDoneValue;
         let nextState = update(this.state.cards,{
@@ -87,7 +89,7 @@ class KanbanBoardContainer extends Component{
         fetch(API_URL+'/cards', {headers: API_HEADERS})
         .then((response)=>response.json())
         .then((responseData)=>{
-            this.setState({stateCards:responseData})
+            this.setState({cards:responseData})
         })
         .catch((error)=>{
             console.log('There was an error fetching the data',error)
@@ -100,7 +102,7 @@ class KanbanBoardContainer extends Component{
                 add:this.addTask,
                 delete:this.deleteTask
             }} 
-            fetchedCards={this.state.stateCards}/>
+            fetchedCards={this.state.cards}/>
         )
     }
 

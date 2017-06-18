@@ -11,15 +11,18 @@ class CheckList extends Component {
         }
     }
     render() {
-    let tasks = this.props.tasks.map((task) => (
-    <li key={this.props.id} className="checklist__task">
+       
+    let tasks = this.props.tasks.map((task,taskIndex) => {
+        return(
+        
+    <li key={task.id} className="checklist__task">
     <input type="checkbox" defaultChecked={task.done} onChange={this.props.taskCallbacks.toggle.bind(null,
     this.props.cardId,taskIndex)} />
     {task.name}
     <a href="#" className="checklist__task--remove" onClick={this.props.taskCallbacks.delete.bind(null,
     this.props.cardId,taskIndex)} />
     </li>
-    ));
+    )});
 
     return (
     <div className="checklist">
