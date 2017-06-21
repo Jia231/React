@@ -5,7 +5,11 @@
 "description": "I should read the **whole** book",
 "color": "#BD8D31",
 "status": "in-progress",
-"tasks": []
+"tasks": [{
+  "id": 1,
+  "name": "ContactList Example",
+  "done": true
+  }]
 },
 {
 "id": 2,
