@@ -4,9 +4,12 @@ import KanbanBoardContainer from './KanbanBoardContainer';
 import Home from './Home';
 import About from './About';
 import {Router,Route,Link,IndexRoute} from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 import Repo from './Repo';
 import ServerError from './ServerError'
 import RepoDetails from './RepoDetails';
+import NewCard from './NewCard';
+import EditCard from './EditCard';
 
 
 class MainApp extends Component {
@@ -32,7 +35,7 @@ class MainApp extends Component {
 
 
 render((
-    <Router>
+    <Router history={createBrowserHistory()}>
         <Route path='/' component={MainApp}>
             <IndexRoute component={Home}/>
             <Route path="Repo" component={Repo}>
@@ -40,7 +43,10 @@ render((
                 <Route path="/repo/:repo_name" component={RepoDetails} />
             </Route>
             <Route path='error' component={ServerError}></Route>
-            <Route path='KanbanBoardContainer' component={KanbanBoardContainer}></Route>
+            <Route path='KanbanBoardContainer' component={KanbanBoardContainer}>
+                <Route path='new' component={NewCard}/>
+                <Route path='/edit/:card_id' component={EditCard}/>
+            </Route>
             <Route path='About' component={About} title="About us"></Route>
         </Route>
     </Router>),document.getElementById('root'))

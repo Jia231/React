@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import 'whatwg-fetch';
 import App from './App';
+import update from 'react-addons-update';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
@@ -45,14 +46,20 @@ class KanbanBoardContainer extends Component{
         });
     }
     deleteTask(cardId,taskId,taskIndex){
-        
+        console.log(`This is the card state`);
+        console.log(this.state.cards);
+        console.log(`This is the taskIndex`);
+        console.log(taskIndex);
         let cardIndex = this.state.cards.findIndex((card)=>card.id==cardId)
-
+        console.log(`This is the cardIndex`);
+        console.log(cardIndex)
         let nextState = update(this.state.cards,{
             [cardIndex]:{
                 tasks:{$splice:[[taskIndex,1]]}
             }
         });
+        console.log(`This is the new state`);
+        console.log(nextState)
         this.setState({cards:nextState})
         fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
             method: 'delete',
