@@ -3,9 +3,18 @@ import CardForm from './CardForm';
 
 class EditCard extends Component{
     componentWillMount(){
-        let card = this.props.cards.find((card)=>card.id===this.props.params.card_id);
+        let card = this.props.cards.find((card)=>card.id==this.props.params.card_id);
+        /*console.log(this.props.cards)
+        console.log(card)
+        console.log('this is the meaning of ...card in edtiCard')*/
+        //console.log(...card)
         this.setState({
-
+            id:card.id,
+            title:card.title,
+            description:card.description,
+            status:card.status ,
+            color:card.color,
+            tasks:card.tasks
         })
     }
     handleChange(field,value){
@@ -13,11 +22,11 @@ class EditCard extends Component{
     }
     handleSubmit(e){
         e.preventDefault();
-        this.props.cardCAllbacks.updateCard(this.state);
-        this,props,history.pushState(null,'/');
+        this.props.cardCallbacks.updateCard(this.state);
+        this.props.history.pushState(null,'/Kanban');
     }
     handleClose(e){
-        this.props.history.pushState(null,'/')
+        this.props.history.pushState(null,'/Kanban')
     }
     render(){
         return(

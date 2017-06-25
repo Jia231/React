@@ -1,9 +1,10 @@
 import React, {Component,PropTypes} from 'react';
 import CheckList from './CheckList';
 import marked from 'marked';
+import { Link } from 'react-router';
 
     let titlePropType = (props, propName, componentName) => {
-        console.log(`${props[propName]} ${componentName}`)
+        //console.log(`${props[propName]} ${componentName}`)
             if (props[propName]) {
             let value = props[propName];
             if (typeof value !== 'string' || value.length > 80) {
@@ -49,6 +50,7 @@ render() {
 return (
     <div className="card">
     <div style={sideColor}/>
+    <div className="card__edit"><Link to={'/edit/'+this.props.id}>&#9998;</Link></div>
     <div className={this.state.showDetails?"card__title card__title--is-open" : "card__title"} 
     onClick={this.toggleDetails.bind(this)}
     >{this.props.title}</div>

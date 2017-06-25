@@ -16,16 +16,21 @@ class NewCard extends Component{
     }
 
     handleChange(field,value){
+        /*console.log('This is the this field in the new card');
+        console.log(`${field} ${value}`)*/
         this.setState({[field]: value});
     }
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.cardCallbacks,addCard(this.state);
-        this.props.history.pushState(null,'/');
+        //console.log('This is the New card this.state')
+        //console.log(Date.now())
+        //console.log(this.state)
+        this.props.cardCallbacks.addCard(this.state);
+        this.props.history.pushState(null,'/Kanban');
     }
     handleClose(e){
-        this.props.history.pushState(null,'/')
+        this.props.history.pushState(null,'/Kanban')
     }
     render(){
         return(
